@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 // @ts-ignore
-import bbxLogo from '../BBX-LOGO.png';
+import bbxLogo from '/public/BBX-LOGO.png';
 import OptimizedVideo from './components/OptimizedVideo';
 
 // Required constants at the top of the file
