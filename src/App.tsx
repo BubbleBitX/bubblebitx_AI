@@ -569,7 +569,7 @@ export default function App() {
                                   : 'hover:text-black hover:bg-gray-100/50'
                               }`}
                             >
-                              Detailed Brief (Tally)
+                              Detailed Brief
                             </button>
                           </div>
 
