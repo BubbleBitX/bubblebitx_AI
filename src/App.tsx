@@ -9,6 +9,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 // @ts-ignore
 import bbxLogo from '../BBX-LOGO.png';
+import OptimizedVideo from './components/OptimizedVideo';
 
 // Required constants at the top of the file
 const VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260602_150901_c45b90ec-18d7-42ff-90e2-b95d7109e330.mp4";
@@ -344,15 +345,7 @@ export default function App() {
         className="relative w-full h-full rounded-[32px] overflow-hidden bg-black shadow-sm"
       >
         {/* Full-screen Background Video */}
-        <video
-          id="bg-video"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
-          autoPlay
-          muted
-          loop
-          playsInline
-          src={VIDEO_URL}
-        />
+        <OptimizedVideo src={VIDEO_URL} />
 
         {/* Ambient minimalist light dark scrim for elegant typography contrast */}
         <div className="absolute inset-0 bg-black/10 z-0" />
@@ -597,8 +590,10 @@ export default function App() {
                                   Tell us about your business
                                 </label>
                                 <div className="flex flex-col sm:flex-row gap-2">
+                                  <label htmlFor="contact-name" className="sr-only">Full Name</label>
                                   <input
                                     ref={nameInputRef}
+                                    id="contact-name"
                                     type="text"
                                     required
                                     placeholder="Name"
@@ -606,7 +601,9 @@ export default function App() {
                                     onChange={(e) => setName(e.target.value)}
                                     className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
                                   />
+                                  <label htmlFor="contact-email" className="sr-only">Business Email</label>
                                   <input
+                                    id="contact-email"
                                     type="email"
                                     required
                                     placeholder="Business Email"
@@ -618,7 +615,9 @@ export default function App() {
                               </div>
 
                               <div className="flex flex-col gap-1.5">
+                                <label htmlFor="contact-message" className="sr-only">Business Challenges and Goals</label>
                                 <textarea
+                                  id="contact-message"
                                   required
                                   rows={2}
                                   placeholder="Describe your business challenges..."
@@ -661,7 +660,9 @@ export default function App() {
                                       exit={{ opacity: 0, height: 0 }}
                                       className="overflow-hidden mt-1.5"
                                     >
+                                      <label htmlFor="other-service-input" className="sr-only">Specify Other Service</label>
                                       <input
+                                        id="other-service-input"
                                         type="text"
                                         required
                                         placeholder="Please specify other service(s)..."
@@ -724,7 +725,7 @@ export default function App() {
                               </div>
                               <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Solutions</span>
                             </div>
-                            <h3 className="text-xl font-bold text-black tracking-tight mt-1">AI Workforce Solutions</h3>
+                            <h2 className="text-xl font-bold text-black tracking-tight mt-1">AI Workforce Solutions</h2>
                             <p className="text-xs text-gray-500">Deploy fully-integrated digital employees configured for your goals.</p>
                           </div>
 
@@ -735,7 +736,7 @@ export default function App() {
                                 <MessageSquare className="w-4 h-4" />
                               </div>
                               <div>
-                                <h4 className="text-xs sm:text-sm font-bold text-black">AI Receptionist & Lead Qualifier</h4>
+                                <h3 className="text-xs sm:text-sm font-bold text-black">AI Receptionist & Lead Qualifier</h3>
                                 <p className="text-[11px] text-gray-500 mt-0.5">Captures, qualifies, and schedules meetings 24/7 on complete autopilot.</p>
                               </div>
                             </div>
@@ -745,7 +746,7 @@ export default function App() {
                                 <Phone className="w-4 h-4" />
                               </div>
                               <div>
-                                <h4 className="text-xs sm:text-sm font-bold text-black">Intelligent Voice Agent</h4>
+                                <h3 className="text-xs sm:text-sm font-bold text-black">Intelligent Voice Agent</h3>
                                 <p className="text-[11px] text-gray-500 mt-0.5">Automates voice customer telephone supports and outbound scheduling calls.</p>
                               </div>
                             </div>
@@ -755,7 +756,7 @@ export default function App() {
                                 <Layers className="w-4 h-4" />
                               </div>
                               <div>
-                                <h4 className="text-xs sm:text-sm font-bold text-black">Operations & CRM Sync</h4>
+                                <h3 className="text-xs sm:text-sm font-bold text-black">Operations & CRM Sync</h3>
                                 <p className="text-[11px] text-gray-500 mt-0.5">Synchronizes WhatsApp, Gmail, Stripe, and HubSpot in high-fidelity.</p>
                               </div>
                             </div>
@@ -789,7 +790,7 @@ export default function App() {
                               </div>
                               <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Industries</span>
                             </div>
-                            <h3 className="text-xl font-bold text-black tracking-tight mt-1">Industries We Transform</h3>
+                            <h2 className="text-xl font-bold text-black tracking-tight mt-1">Industries We Transform</h2>
                             <p className="text-xs text-gray-500">Customized integrations that deliver massive business results.</p>
                           </div>
 
@@ -848,7 +849,7 @@ export default function App() {
                               </div>
                               <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Process</span>
                             </div>
-                            <h3 className="text-xl font-bold text-black tracking-tight mt-1">Our 3-Step Integration</h3>
+                            <h2 className="text-xl font-bold text-black tracking-tight mt-1">Our 3-Step Integration</h2>
                             <p className="text-xs text-gray-500">Simple onboarding structure for your brand-new digital employees.</p>
                           </div>
 
@@ -856,19 +857,19 @@ export default function App() {
                           <div className="flex flex-col gap-3.5 mt-1 relative pl-5 border-l border-gray-100 ml-3.5">
                             <div className="relative">
                               <span className="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-black border-2 border-white flex items-center justify-center text-[8px] text-white font-bold">1</span>
-                              <h4 className="text-xs sm:text-sm font-bold text-black">AI Blueprint & Design</h4>
+                              <h3 className="text-xs sm:text-sm font-bold text-black">AI Blueprint & Design</h3>
                               <p className="text-[11px] text-gray-500 mt-0.5">We analyze your historical logs and procedures to outline the absolute best automation blueprints.</p>
                             </div>
 
                             <div className="relative">
                               <span className="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-black border-2 border-white flex items-center justify-center text-[8px] text-white font-bold">2</span>
-                              <h4 className="text-xs sm:text-sm font-bold text-black">Model Engineering & Training</h4>
+                              <h3 className="text-xs sm:text-sm font-bold text-black">Model Engineering & Training</h3>
                               <p className="text-[11px] text-gray-500 mt-0.5">We feed custom context files and configure speech latency to craft beautiful dedicated system agents.</p>
                             </div>
 
                             <div className="relative">
                               <span className="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-black border-2 border-white flex items-center justify-center text-[8px] text-white font-bold">3</span>
-                              <h4 className="text-xs sm:text-sm font-bold text-black">Full Launch & Synchronization</h4>
+                              <h3 className="text-xs sm:text-sm font-bold text-black">Full Launch & Synchronization</h3>
                               <p className="text-[11px] text-gray-500 mt-0.5">Agents plug directly into CRM systems, WhatsApp numbers, and active telephone networks.</p>
                             </div>
                           </div>
@@ -901,9 +902,9 @@ export default function App() {
                               </div>
                               <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-gray-400 font-extrabold">Proof & Impact</span>
                             </div>
-                            <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-extrabold text-black tracking-tight mt-0.5 leading-snug">
+                            <h2 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-extrabold text-black tracking-tight mt-0.5 leading-snug">
                               Real AI Systems. Real Business Results.
-                            </h3>
+                            </h2>
                             <p className="text-[9px] sm:text-[10px] text-gray-500 leading-normal hidden sm:block">
                               We deploy production-ready AI systems that solve complex business problems.
                             </p>

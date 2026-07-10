@@ -1,0 +1,21 @@
+{
+  "name": "BubbleBitX AI Workforce",
+  "short_name": "BubbleBitX",
+  "description": "High-performance autonomous AI workforces and custom agents engineered to scale business operations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/BBX-LOGO.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
