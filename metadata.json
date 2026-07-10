@@ -1,0 +1,8 @@
+{
+  "name": "Remix: BUBBLEBITX",
+  "description": "A high-performance full-screen video-background landing page for Forma, complete with a clean, responsive contact form and modern typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
