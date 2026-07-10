@@ -182,6 +182,7 @@ export default function App() {
   const [sending, setSending] = useState<boolean>(false);
   const [sent, setSent] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [formType, setFormType] = useState<'quick' | 'brief'>('quick');
 
   // Case studies interactive states
   const [currentCaseIdx, setCurrentCaseIdx] = useState<number>(0);
@@ -585,112 +586,160 @@ export default function App() {
                             <div className="flex-1 h-px bg-gray-100" />
                           </div>
 
+                          {/* Form Type Toggle */}
+                          <div className="flex gap-1 bg-gray-100/50 p-1 rounded-xl border border-gray-200/40 text-[10px] sm:text-xs font-semibold text-gray-500 mb-1 shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => setFormType('quick')}
+                              className={`flex-1 py-1.5 rounded-lg text-center transition-all cursor-pointer ${
+                                formType === 'quick'
+                                  ? 'bg-[#0B1528] text-white shadow-sm font-semibold'
+                                  : 'hover:text-black hover:bg-gray-100/50'
+                              }`}
+                            >
+                              Quick Message
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setFormType('brief')}
+                              className={`flex-1 py-1.5 rounded-lg text-center transition-all cursor-pointer ${
+                                formType === 'brief'
+                                  ? 'bg-[#0B1528] text-white shadow-sm font-semibold'
+                                  : 'hover:text-black hover:bg-gray-100/50'
+                              }`}
+                            >
+                              Detailed Brief (Tally)
+                            </button>
+                          </div>
+
                           {/* Interactive State Area: Form OR Success State */}
                           {!sent ? (
-                            <form 
-                              id="contact-form"
-                              onSubmit={handleSubmit}
-                              className="flex flex-col gap-3"
-                            >
-                              <div className="flex flex-col gap-1.5">
-                                <label id="vision-label" className="text-xs font-bold text-black uppercase tracking-tight">
-                                  Tell us about your business
-                                </label>
-                                <div className="flex flex-col sm:flex-row gap-2">
-                                  <label htmlFor="contact-name" className="sr-only">Full Name</label>
-                                  <input
-                                    ref={nameInputRef}
-                                    id="contact-name"
-                                    type="text"
-                                    required
-                                    placeholder="Name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
-                                  />
-                                  <label htmlFor="contact-email" className="sr-only">Business Email</label>
-                                  <input
-                                    id="contact-email"
-                                    type="email"
-                                    required
-                                    placeholder="Business Email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
-                                  />
-                                </div>
-                              </div>
-
-                              <div className="flex flex-col gap-1.5">
-                                <label htmlFor="contact-message" className="sr-only">Business Challenges and Goals</label>
-                                <textarea
-                                  id="contact-message"
-                                  required
-                                  rows={2}
-                                  placeholder="Describe your business challenges..."
-                                  value={message}
-                                  onChange={(e) => setMessage(e.target.value)}
-                                  className="w-full text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none resize-none transition-all"
+                            formType === 'brief' ? (
+                              <div className="w-full flex flex-col gap-2 animate-in fade-in duration-200">
+                                <iframe
+                                  src="https://tally.so/embed/EkYz1B?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                                  loading="lazy"
+                                  width="100%"
+                                  className="w-full h-[320px] rounded-2xl border-0 overflow-y-auto bg-gray-50/50 p-2 border border-gray-100/50"
+                                  title="BubbleBitX Briefing Form"
                                 />
+                                <div className="text-center mt-1">
+                                  <a
+                                    href="https://tally.so/r/EkYz1B"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[10px] text-gray-400 hover:text-black transition-colors inline-flex items-center gap-1 hover:underline font-medium"
+                                  >
+                                    Can't see the form? Open Tally in a new tab <ArrowUpRight className="w-3 h-3" />
+                                  </a>
+                                </div>
                               </div>
-
-                              {/* Services Toggle Tag Chips */}
-                              <div className="flex flex-col gap-1.5 mt-0.5">
-                                <span id="help-label" className="text-xs font-bold text-black uppercase tracking-tight">
-                                  Select core services...
-                                </span>
-                                <div id="service-tags-wrapper" className="flex flex-wrap gap-1">
-                                  {SERVICES.map((service) => {
-                                    const isSelected = selected.includes(service);
-                                    return (
-                                      <button
-                                        key={service}
-                                        type="button"
-                                        onClick={() => handleToggleService(service)}
-                                        className={`text-[9px] sm:text-[10px] font-semibold px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border transition-all cursor-pointer ${
-                                          isSelected
-                                            ? 'bg-gray-100 text-black border-black'
-                                            : 'bg-white text-gray-500 border-gray-200 hover:border-gray-400'
-                                        }`}
-                                      >
-                                        {service}
-                                      </button>
-                                    );
-                                  })}
+                            ) : (
+                              <form 
+                                id="contact-form"
+                                onSubmit={handleSubmit}
+                                className="flex flex-col gap-3"
+                              >
+                                <div className="flex flex-col gap-1.5">
+                                  <label id="vision-label" className="text-xs font-bold text-black uppercase tracking-tight">
+                                    Tell us about your business
+                                  </label>
+                                  <div className="flex flex-col sm:flex-row gap-2">
+                                    <label htmlFor="contact-name" className="sr-only">Full Name</label>
+                                    <input
+                                      ref={nameInputRef}
+                                      id="contact-name"
+                                      type="text"
+                                      required
+                                      placeholder="Name"
+                                      value={name}
+                                      onChange={(e) => setName(e.target.value)}
+                                      className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
+                                    />
+                                    <label htmlFor="contact-email" className="sr-only">Business Email</label>
+                                    <input
+                                      id="contact-email"
+                                      type="email"
+                                      required
+                                      placeholder="Business Email"
+                                      value={email}
+                                      onChange={(e) => setEmail(e.target.value)}
+                                      className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
+                                    />
+                                  </div>
                                 </div>
 
-                                <AnimatePresence>
-                                  {selected.includes("Other") && (
-                                    <motion.div
-                                      initial={{ opacity: 0, height: 0 }}
-                                      animate={{ opacity: 1, height: "auto" }}
-                                      exit={{ opacity: 0, height: 0 }}
-                                      className="overflow-hidden mt-1.5"
-                                    >
-                                      <label htmlFor="other-service-input" className="sr-only">Specify Other Service</label>
-                                      <input
-                                        id="other-service-input"
-                                        type="text"
-                                        required
-                                        placeholder="Please specify other service(s)..."
-                                        value={otherServiceText}
-                                        onChange={(e) => setOtherServiceText(e.target.value)}
-                                        className="w-full text-xs sm:text-sm px-3.5 py-1.5 sm:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
-                                      />
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
-                              </div>
+                                <div className="flex flex-col gap-1.5">
+                                  <label htmlFor="contact-message" className="sr-only">Business Challenges and Goals</label>
+                                  <textarea
+                                    id="contact-message"
+                                    required
+                                    rows={2}
+                                    placeholder="Describe your business challenges..."
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    className="w-full text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none resize-none transition-all"
+                                  />
+                                </div>
 
-                              {/* Submit Button */}
-                              <button
-                                type="submit"
-                                disabled={sending}
-                                className="w-full bg-[#0B1528] text-white text-sm font-semibold py-2.5 sm:py-3.5 rounded-2xl mt-1.5 lg:mt-1 xl:mt-2 hover:bg-[#15233c] shadow-lg shadow-[#0B1528]/10 transition-all disabled:opacity-60 cursor-pointer"
-                              >
-                                {sending ? "Sending..." : "Get Free AI Strategy"}
-                              </button>
-                            </form>
+                                {/* Services Toggle Tag Chips */}
+                                <div className="flex flex-col gap-1.5 mt-0.5">
+                                  <span id="help-label" className="text-xs font-bold text-black uppercase tracking-tight">
+                                    Select core services...
+                                  </span>
+                                  <div id="service-tags-wrapper" className="flex flex-wrap gap-1">
+                                    {SERVICES.map((service) => {
+                                      const isSelected = selected.includes(service);
+                                      return (
+                                        <button
+                                          key={service}
+                                          type="button"
+                                          onClick={() => handleToggleService(service)}
+                                          className={`text-[9px] sm:text-[10px] font-semibold px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border transition-all cursor-pointer ${
+                                            isSelected
+                                              ? 'bg-gray-100 text-black border-black'
+                                              : 'bg-white text-gray-500 border-gray-200 hover:border-gray-400'
+                                          }`}
+                                        >
+                                          {service}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+
+                                  <AnimatePresence>
+                                    {selected.includes("Other") && (
+                                      <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="overflow-hidden mt-1.5"
+                                      >
+                                        <label htmlFor="other-service-input" className="sr-only">Specify Other Service</label>
+                                        <input
+                                          id="other-service-input"
+                                          type="text"
+                                          required
+                                          placeholder="Please specify other service(s)..."
+                                          value={otherServiceText}
+                                          onChange={(e) => setOtherServiceText(e.target.value)}
+                                          className="w-full text-xs sm:text-sm px-3.5 py-1.5 sm:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
+                                        />
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+
+                                {/* Submit Button */}
+                                <button
+                                  type="submit"
+                                  disabled={sending}
+                                  className="w-full bg-[#0B1528] text-white text-sm font-semibold py-2.5 sm:py-3.5 rounded-2xl mt-1.5 lg:mt-1 xl:mt-2 hover:bg-[#15233c] shadow-lg shadow-[#0B1528]/10 transition-all disabled:opacity-60 cursor-pointer"
+                                >
+                                  {sending ? "Sending..." : "Get Free AI Strategy"}
+                                </button>
+                              </form>
+                            )
                           ) : (
                             /* Success State shown in place of the form */
                             <div 
