@@ -385,13 +385,15 @@ export default function App() {
             {/* Right side controls: Desktop CTA & Mobile Hamburger */}
             <div className="flex items-center gap-2">
               {/* Call-to-Action button - shown on desktop */}
-              <button
+              <a
                 id="cta-start-project"
-                onClick={handleStartProject}
-                className="hidden lg:block bg-[#0B1528] text-white text-sm font-medium px-5 py-2 rounded-xl hover:bg-[#15233c] transition-colors cursor-pointer whitespace-nowrap"
+                href="https://calendly.com/bubblebitxt/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:flex items-center justify-center bg-[#0B1528] text-white text-sm font-medium px-5 py-2 rounded-xl hover:bg-[#15233c] transition-colors cursor-pointer whitespace-nowrap"
               >
                 Book Strategy Call
-              </button>
+              </a>
 
               {/* Hamburger Button - shown below lg */}
               <button
@@ -442,12 +444,15 @@ export default function App() {
                 </a>
               </nav>
               <hr className="border-gray-200/55 my-1" />
-              <button
-                onClick={handleStartProject}
-                className="w-full bg-[#0B1528] text-white text-sm font-medium py-2.5 rounded-xl hover:bg-[#15233c] transition-colors cursor-pointer"
+              <a
+                href="https://calendly.com/bubblebitxt/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="w-full bg-[#0B1528] text-white text-sm font-medium py-2.5 rounded-xl hover:bg-[#15233c] transition-colors cursor-pointer text-center block"
               >
                 Book Strategy Call
-              </button>
+              </a>
             </div>
           )}
         </header>
@@ -701,14 +706,25 @@ export default function App() {
                               <h3 id="success-heading" className="text-base font-semibold text-gray-900">
                                 You're all set!
                               </h3>
-                              <p id="success-text" className="text-sm text-gray-500">
-                                Expect a reply within 24 hours.
+                              <p id="success-text" className="text-sm text-gray-500 max-w-xs">
+                                Expect a reply within 24 hours, or secure a direct session on our calendar right now:
                               </p>
+
+                              <div className="flex flex-col gap-2 w-full max-w-xs mt-1">
+                                <a
+                                  href="https://calendly.com/bubblebitxt/30min"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="w-full bg-[#0B1528] hover:bg-[#15233c] text-white text-xs font-semibold py-2.5 rounded-xl transition-all text-center shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                                >
+                                  Book Session Instantly <ArrowUpRight className="w-3.5 h-3.5" />
+                                </a>
+                              </div>
 
                               <button
                                 type="button"
                                 onClick={handleResetForm}
-                                className="mt-4 text-xs text-gray-500 hover:text-black hover:underline transition-all cursor-pointer"
+                                className="mt-4 text-xs text-gray-400 hover:text-black hover:underline transition-all cursor-pointer"
                               >
                                 Send another message
                               </button>
@@ -1041,10 +1057,10 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute inset-0 z-50 bg-[#0B1528]/95 sm:bg-[#0B1528]/85 backdrop-blur-xl text-white flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden"
+              className="absolute inset-0 z-50 bg-white/95 sm:bg-white/90 backdrop-blur-xl text-black flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden"
             >
               {/* Top Bar matching landing page logo & layout */}
-              <div className="flex justify-between items-center pb-4 border-b border-white/10 shrink-0">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-200/60 shrink-0">
                 <div className="flex items-center gap-2.5">
                   <img 
                     src={bbxLogo} 
@@ -1054,10 +1070,10 @@ export default function App() {
                     className="h-8 sm:h-10 w-auto object-contain shrink-0" 
                   />
                   <div className="flex flex-col">
-                    <span className="font-bold text-xs sm:text-sm tracking-tight text-white leading-none">
+                    <span className="font-bold text-xs sm:text-sm tracking-tight text-black leading-none">
                       BubbleBitX Intel
                     </span>
-                    <span className="text-[8px] uppercase tracking-widest text-pink-400 font-mono font-bold mt-0.5">
+                    <span className="text-[8px] uppercase tracking-widest text-pink-600 font-mono font-bold mt-0.5">
                       Production Systems
                     </span>
                   </div>
@@ -1066,14 +1082,14 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => setSelectedCaseStudy(null)}
-                    className="hidden sm:flex items-center gap-2 text-xs font-semibold text-gray-400 hover:text-white transition-colors cursor-pointer bg-white/5 px-3 py-1.5 rounded-xl border border-white/5"
+                    className="hidden sm:flex items-center gap-2 text-xs font-semibold text-gray-600 hover:text-black transition-colors cursor-pointer bg-gray-50 hover:bg-gray-100 px-3 py-1.5 rounded-xl border border-gray-200/50"
                   >
-                    <ArrowLeft className="w-3.5 h-3.5 text-pink-400" /> Back to Site
+                    <ArrowLeft className="w-3.5 h-3.5 text-pink-600" /> Back to Site
                   </button>
                   <button
                     type="button"
                     onClick={() => setSelectedCaseStudy(null)}
-                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer border border-white/10"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 flex items-center justify-center transition-all cursor-pointer border border-gray-200"
                     aria-label="Close Case Study"
                   >
                     <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1089,66 +1105,67 @@ export default function App() {
                   {/* Header info */}
                   <div className="flex flex-col gap-1.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-pink-300 bg-pink-950/60 border border-pink-500/20 px-2.5 py-1 rounded-lg">
+                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-pink-600 bg-pink-50 border border-pink-100/60 px-2.5 py-1 rounded-lg">
                         {selectedCaseStudy.industry}
                       </span>
-                      <div className="flex items-center gap-1.5 text-[10px] text-gray-300 font-mono">
-                        <Clock className="w-3.5 h-3.5 text-pink-300" /> {selectedCaseStudy.duration} Deployment
+                      <div className="flex items-center gap-1.5 text-[10px] text-gray-500 font-mono">
+                        <Clock className="w-3.5 h-3.5 text-pink-600" /> {selectedCaseStudy.duration} Deployment
                       </div>
                     </div>
                     <div className="flex items-baseline gap-2.5 sm:gap-4 mt-1">
-                      <span className="text-2xl sm:text-4xl font-mono font-extrabold text-pink-500/25 select-none leading-none">
+                      <span className="text-2xl sm:text-4xl font-mono font-extrabold text-pink-500/15 select-none leading-none">
                         {selectedCaseStudy.num}
                       </span>
-                      <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3.5xl font-extrabold text-white tracking-tight leading-tight">
+                      <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-3.5xl font-extrabold text-black tracking-tight leading-tight">
                         {selectedCaseStudy.title}
                       </h2>
                     </div>
                   </div>
 
                   {/* Challenge Block */}
-                  <div className="bg-[#15233c]/40 backdrop-blur-sm border border-white/5 p-4 sm:p-5 rounded-2xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-red-400" />
-                    <h4 className="text-[10px] uppercase tracking-widest text-red-400 font-extrabold mb-1.5">
+                  <div className="bg-red-50/50 border border-red-100/60 p-4 sm:p-5 rounded-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-red-500" />
+                    <h4 className="text-[10px] uppercase tracking-widest text-red-600 font-extrabold mb-1.5">
                       The Challenge
                     </h4>
-                    <p className="text-xs sm:text-sm text-gray-200 font-normal leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed">
                       {selectedCaseStudy.challenge}
                     </p>
                   </div>
 
                   {/* Solution Block */}
-                  <div className="bg-[#15233c]/40 backdrop-blur-sm border border-white/5 p-4 sm:p-5 rounded-2xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-green-400" />
-                    <h4 className="text-[10px] uppercase tracking-widest text-green-400 font-extrabold mb-1.5">
+                  <div className="bg-green-50/50 border border-green-100/60 p-4 sm:p-5 rounded-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-green-500" />
+                    <h4 className="text-[10px] uppercase tracking-widest text-green-600 font-extrabold mb-1.5">
                       Our Solution
                     </h4>
-                    <p className="text-xs sm:text-sm text-gray-200 font-normal leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-700 font-normal leading-relaxed">
                       {selectedCaseStudy.solution}
                     </p>
                   </div>
 
                   {/* Strategy Call Floating CTA */}
-                  <div className="p-4 bg-gradient-to-r from-pink-900/10 to-slate-900/25 backdrop-blur-sm border border-pink-500/20 rounded-2xl flex flex-col gap-3 relative overflow-hidden shadow-md">
-                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-pink-500/20 to-transparent rounded-bl-full pointer-events-none" />
+                  <div className="p-4 bg-gradient-to-r from-pink-50 to-indigo-50/60 border border-pink-100/80 rounded-2xl flex flex-col gap-3 relative overflow-hidden shadow-sm">
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-pink-500/10 to-transparent rounded-bl-full pointer-events-none" />
                     <div>
-                      <h4 className="text-xs font-extrabold text-white tracking-tight">
+                      <h4 className="text-xs font-extrabold text-black tracking-tight">
                         Ready to build your next AI success story?
                       </h4>
-                      <p className="text-[10px] text-gray-300 mt-0.5 leading-normal font-normal">
+                      <p className="text-[10px] text-gray-600 mt-0.5 leading-normal font-normal">
                         Let's identify where AI can create measurable business impact for your organization.
                       </p>
                     </div>
-                    <button
-                      type="button"
+                    <a
+                      href="https://calendly.com/bubblebitxt/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => {
                         setSelectedCaseStudy(null);
-                        handleStartProject();
                       }}
-                      className="w-full bg-pink-500 hover:bg-pink-600 text-white text-[11px] font-bold py-2.5 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer shadow-sm"
+                      className="w-full bg-pink-500 hover:bg-pink-600 text-white text-[11px] font-bold py-2.5 rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer shadow-sm text-center"
                     >
                       Schedule Free Strategy Call <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -1157,7 +1174,7 @@ export default function App() {
                   
                   {/* Systems Architecture list */}
                   <div className="flex flex-col gap-3">
-                    <h4 className="text-[10px] uppercase tracking-widest text-pink-300 font-extrabold flex items-center gap-1.5">
+                    <h4 className="text-[10px] uppercase tracking-widest text-pink-600 font-extrabold flex items-center gap-1.5">
                       <Cpu className="w-3.5 h-3.5" /> System Architecture & AI Data Flow
                     </h4>
                     <div className="flex flex-col gap-2.5">
@@ -1166,13 +1183,13 @@ export default function App() {
                         const title = parts[0];
                         const desc = parts.slice(1).join(': ');
                         return (
-                          <div key={idx} className="flex gap-3 bg-[#15233c]/30 backdrop-blur-sm border border-white/5 p-3.5 rounded-xl hover:border-pink-500/20 transition-all duration-300">
-                            <div className="w-6 h-6 rounded-full bg-pink-500/10 text-pink-300 flex items-center justify-center shrink-0 text-xs font-bold font-mono">
+                          <div key={idx} className="flex gap-3 bg-gray-50 border border-gray-100 p-3.5 rounded-xl hover:border-pink-200 hover:bg-pink-50/20 transition-all duration-300">
+                            <div className="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center shrink-0 text-xs font-bold font-mono">
                               {idx + 1}
                             </div>
                             <div className="flex flex-col justify-center">
-                              <h5 className="text-xs font-extrabold text-white">{title}</h5>
-                              <p className="text-[11px] text-gray-300 mt-0.5 leading-normal">{desc}</p>
+                              <h5 className="text-xs font-extrabold text-black">{title}</h5>
+                              <p className="text-[11px] text-gray-600 mt-0.5 leading-normal">{desc}</p>
                             </div>
                           </div>
                         );
@@ -1181,28 +1198,28 @@ export default function App() {
                   </div>
 
                   {/* Business Impact Checklist */}
-                  <div className="bg-[#15233c]/50 backdrop-blur-sm border border-pink-500/10 p-5 rounded-2xl flex flex-col gap-3 relative overflow-hidden shadow-md">
+                  <div className="bg-green-50/25 border border-green-100/60 p-5 rounded-2xl flex flex-col gap-3 relative overflow-hidden shadow-sm">
                     <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-green-500/5 to-transparent rounded-bl-full pointer-events-none" />
-                    <h4 className="text-[10px] uppercase tracking-widest text-green-400 font-extrabold flex items-center gap-1.5">
+                    <h4 className="text-[10px] uppercase tracking-widest text-green-700 font-extrabold flex items-center gap-1.5">
                       <TrendingUp className="w-3.5 h-3.5" /> Business Impact Delivered
                     </h4>
                     <div className="flex flex-col gap-3">
                       {selectedCaseStudy.impact.map((imp: any, idx: number) => (
                         <div key={idx} className="flex gap-2.5 items-start">
-                          <div className="p-1 rounded bg-green-500/10 text-green-400 flex items-center justify-center mt-0.5 shrink-0">
+                          <div className="p-1 rounded bg-green-100 text-green-700 flex items-center justify-center mt-0.5 shrink-0">
                             <Check className="w-3 h-3" />
                           </div>
                           <div className="flex flex-col">
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-sm font-mono font-extrabold text-green-300 leading-none">
+                              <span className="text-sm font-mono font-extrabold text-green-600 leading-none">
                                 {imp.stat}
                               </span>
-                              <span className="text-[11px] font-bold text-white">
+                              <span className="text-[11px] font-bold text-black">
                                 {imp.label}
                               </span>
                             </div>
                             {imp.desc && (
-                              <p className="text-[10px] text-gray-300 mt-0.5 leading-normal font-normal">
+                              <p className="text-[10px] text-gray-600 mt-0.5 leading-normal font-normal">
                                 {imp.desc}
                               </p>
                             )}
@@ -1214,14 +1231,14 @@ export default function App() {
 
                   {/* Technologies Utilized */}
                   <div className="flex flex-col gap-2.5">
-                    <h4 className="text-[10px] uppercase tracking-widest text-pink-300 font-extrabold flex items-center gap-1.5">
+                    <h4 className="text-[10px] uppercase tracking-widest text-pink-600 font-extrabold flex items-center gap-1.5">
                       <Database className="w-3.5 h-3.5" /> Core Integration Stack
                     </h4>
                     <div className="flex flex-wrap gap-1.5">
                       {selectedCaseStudy.tech.map((t: string) => (
                         <span
                           key={t}
-                          className="bg-white/5 hover:bg-white/10 border border-white/5 text-[10px] font-semibold px-2.5 py-1 rounded-lg transition-all font-mono"
+                          className="bg-gray-100/80 hover:bg-gray-200/50 border border-gray-200/40 text-[10px] font-semibold px-2.5 py-1 rounded-lg transition-all font-mono text-gray-700"
                         >
                           {t}
                         </span>
@@ -1233,12 +1250,12 @@ export default function App() {
               </div>
 
               {/* Browse/Switch Case Study bottom bar */}
-              <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2.5 shrink-0">
+              <div className="mt-4 pt-4 border-t border-gray-200 flex flex-col gap-2.5 shrink-0">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                  <h4 className="text-[11px] font-extrabold text-white uppercase tracking-widest flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-pink-400" /> Explore Other Case Studies
+                  <h4 className="text-[11px] font-extrabold text-black uppercase tracking-widest flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-pink-600" /> Explore Other Case Studies
                   </h4>
-                  <span className="text-[9px] text-gray-400 font-mono hidden sm:inline">Select another case study to transition instantly</span>
+                  <span className="text-[9px] text-gray-500 font-mono hidden sm:inline">Select another case study to transition instantly</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
                   {CASE_STUDIES.map((cs) => {
@@ -1250,24 +1267,24 @@ export default function App() {
                         onClick={() => setSelectedCaseStudy(cs)}
                         className={`group p-2 rounded-xl border text-left transition-all relative overflow-hidden flex flex-col justify-between cursor-pointer ${
                           isActive
-                            ? 'bg-[#15233c] border-pink-500/40 text-white font-semibold'
-                            : 'bg-[#15233c]/15 border-white/5 text-gray-300 hover:bg-[#15233c]/30 hover:border-white/10 hover:text-white'
+                            ? 'bg-[#0B1528] border-pink-500/40 text-white font-semibold'
+                            : 'bg-gray-50 border-gray-200/50 text-gray-600 hover:bg-gray-100 hover:border-gray-300 hover:text-black'
                         }`}
                       >
                         <div className="flex flex-col">
                           <div className="flex justify-between items-center mb-0.5">
-                            <span className="text-[8px] font-mono font-bold text-gray-400 group-hover:text-pink-300 transition-colors">
+                            <span className="text-[8px] font-mono font-bold text-gray-400 group-hover:text-pink-600 transition-colors">
                               Case #{cs.num}
                             </span>
                             {isActive && (
-                              <span className="text-[7px] font-extrabold uppercase tracking-wider text-pink-300 bg-pink-950/80 px-1 py-0.2 rounded border border-pink-500/20">
+                              <span className="text-[7px] font-extrabold uppercase tracking-wider text-pink-600 bg-pink-50 px-1 py-0.2 rounded border border-pink-200">
                                 Active
                               </span>
                             )}
                           </div>
                           <h5 className="text-[9px] font-extrabold leading-tight line-clamp-1">{cs.title}</h5>
                         </div>
-                        <div className="flex items-center gap-0.5 text-[8px] font-bold mt-1 text-pink-400 opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-2px] group-hover:translate-x-0">
+                        <div className="flex items-center gap-0.5 text-[8px] font-bold mt-1 text-pink-600 opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-2px] group-hover:translate-x-0">
                           Inspect <ArrowRight className="w-2.5 h-2.5" />
                         </div>
                       </button>
