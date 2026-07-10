@@ -364,6 +364,8 @@ export default function App() {
               <img 
                 src={bbxLogo} 
                 alt="BBX Logo" 
+                width={48}
+                height={48}
                 className="h-10 sm:h-12 w-auto object-contain shrink-0" 
                 id="logo-img"
               />
@@ -1047,6 +1049,8 @@ export default function App() {
                   <img 
                     src={bbxLogo} 
                     alt="BBX Logo" 
+                    width={40}
+                    height={40}
                     className="h-8 sm:h-10 w-auto object-contain shrink-0" 
                   />
                   <div className="flex flex-col">
