@@ -522,7 +522,7 @@ export default function App() {
                 </div>
 
                 {/* Sliding content viewport */}
-                <div className="relative overflow-hidden w-full">
+                <div className="relative overflow-y-auto overflow-x-hidden w-full max-h-[500px] sm:max-h-[560px] md:max-h-[600px] lg:max-h-[480px] xl:max-h-[600px] pr-0.5 scrollbar-thin">
                   <AnimatePresence mode="wait" custom={direction} initial={false}>
                     <motion.div
                       key={activePage}
@@ -534,56 +534,17 @@ export default function App() {
                       className="w-full flex flex-col justify-between"
                     >
                       {activePage === 'home' && (
-                        <div className="flex flex-col gap-3 sm:gap-4 lg:gap-3 xl:gap-4">
-                          {/* Heading */}
-                          <h2 id="form-heading" className="text-xl sm:text-2xl xl:text-3xl font-semibold text-black tracking-tight leading-tight">
-                            Let's Build Your <br />AI Workforce
-                          </h2>
-
-                          {/* Email + Socials Row */}
-                          <div 
-                            id="socials-row"
-                            className="flex flex-row items-center justify-between gap-3 bg-gray-50 rounded-2xl px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5"
-                          >
-                            <div className="flex flex-col min-w-0">
-                              <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1">
-                                Drop us a line
-                              </span>
-                              <a 
-                                href="mailto:hello@bubblebitx.com" 
-                                className="text-blue-600 font-semibold hover:underline truncate text-sm sm:text-base"
-                              >
-                                hello@bubblebitx.com
-                              </a>
-                            </div>
-
-                            <div id="socials-buttons" className="flex items-center gap-2 shrink-0">
-                              <SocialBtn
-                                href="https://in.linkedin.com/company/bubblebitx"
-                                className="bg-blue-50 border border-blue-100/60 text-blue-600 hover:bg-blue-100 hover:text-blue-700 hover:border-blue-200 transition-all"
-                                label="Bubblebitx LinkedIn"
-                                icon={<Linkedin className="w-[14px] h-[14px]" strokeWidth={2.2} />}
-                              />
-                              <SocialBtn
-                                href="https://www.instagram.com/bubblebitxt/"
-                                className="bg-pink-50 border border-pink-100/60 text-pink-500 hover:bg-pink-100 hover:text-pink-600 hover:border-pink-200 transition-all"
-                                label="Instagram"
-                                icon={<Instagram className="w-[14px] h-[14px]" strokeWidth={2.2} />}
-                              />
-                              <SocialBtn
-                                href="https://www.youtube.com/@bubblebitx"
-                                className="bg-red-50 border border-red-100/60 text-red-500 hover:bg-red-100 hover:text-red-600 hover:border-red-200 transition-all"
-                                label="YouTube"
-                                icon={<Youtube className="w-[14px] h-[14px]" strokeWidth={2.2} />}
-                              />
-                            </div>
-                          </div>
-
-                          {/* OR Divider */}
-                          <div className="flex items-center gap-4">
-                            <div className="flex-1 h-px bg-gray-100" />
-                            <span className="text-gray-400 font-medium text-xs uppercase tracking-widest">OR</span>
-                            <div className="flex-1 h-px bg-gray-100" />
+                        <div className="flex flex-col gap-2.5 sm:gap-3 lg:gap-2.5 xl:gap-3">
+                          {/* Compact Unified Header */}
+                          <div className="flex flex-col gap-1 bg-gray-50/50 p-3 rounded-2xl border border-gray-100/60 shrink-0">
+                            <h2 id="form-heading" className="text-sm sm:text-base font-bold text-black tracking-tight leading-none">
+                              {formType === 'brief' ? 'Detailed Project Briefing' : "Let's Build Your AI Workforce"}
+                            </h2>
+                            <p className="text-[10px] sm:text-xs text-gray-500 mt-0.5">
+                              {formType === 'brief'
+                                ? 'Complete our quick planner below to kickstart your AI workforce integration.'
+                                : 'Drop your details below to get a custom AI strategy within 24 hours.'}
+                            </p>
                           </div>
 
                           {/* Form Type Toggle */}
@@ -654,7 +615,7 @@ export default function App() {
                                       placeholder="Name"
                                       value={name}
                                       onChange={(e) => setName(e.target.value)}
-                                      className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
+                                      className="flex-1 min-w-0 text-sm px-3.5 py-2 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
                                     />
                                     <label htmlFor="contact-email" className="sr-only">Business Email</label>
                                     <input
@@ -664,7 +625,7 @@ export default function App() {
                                       placeholder="Business Email"
                                       value={email}
                                       onChange={(e) => setEmail(e.target.value)}
-                                      className="flex-1 min-w-0 text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
+                                      className="flex-1 min-w-0 text-sm px-3.5 py-2 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none transition-all"
                                     />
                                   </div>
                                 </div>
@@ -678,7 +639,7 @@ export default function App() {
                                     placeholder="Describe your business challenges..."
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
-                                    className="w-full text-sm px-4 py-2 sm:py-2.5 lg:py-1.5 xl:py-2.5 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none resize-none transition-all"
+                                    className="w-full text-sm px-3.5 py-2 rounded-xl border border-gray-100 bg-gray-50 placeholder-gray-400 focus:ring-2 focus:ring-black outline-none resize-none transition-all"
                                   />
                                 </div>
 
@@ -734,7 +695,7 @@ export default function App() {
                                 <button
                                   type="submit"
                                   disabled={sending}
-                                  className="w-full bg-[#0B1528] text-white text-sm font-semibold py-2.5 sm:py-3.5 rounded-2xl mt-1.5 lg:mt-1 xl:mt-2 hover:bg-[#15233c] shadow-lg shadow-[#0B1528]/10 transition-all disabled:opacity-60 cursor-pointer"
+                                  className="w-full bg-[#0B1528] text-white text-sm font-semibold py-2.5 rounded-xl mt-1 hover:bg-[#15233c] shadow-lg shadow-[#0B1528]/10 transition-all disabled:opacity-60 cursor-pointer"
                                 >
                                   {sending ? "Sending..." : "Get Free AI Strategy"}
                                 </button>
@@ -779,6 +740,20 @@ export default function App() {
                               </button>
                             </div>
                           )}
+
+                          {/* Unified Sleek Footer for email & socials */}
+                          <div className="flex items-center justify-between text-[10px] text-gray-400 mt-1 px-1 border-t border-gray-100 pt-2 shrink-0">
+                            <a href="mailto:hello@bubblebitx.com" className="hover:text-blue-600 transition-colors font-medium">
+                              hello@bubblebitx.com
+                            </a>
+                            <div className="flex items-center gap-2">
+                              <a href="https://in.linkedin.com/company/bubblebitx" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-all">LinkedIn</a>
+                              <span>•</span>
+                              <a href="https://www.instagram.com/bubblebitxt/" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition-all">Instagram</a>
+                              <span>•</span>
+                              <a href="https://www.youtube.com/@bubblebitx" target="_blank" rel="noopener noreferrer" className="hover:text-red-500 transition-all">YouTube</a>
+                            </div>
+                          </div>
                         </div>
                       )}
 
