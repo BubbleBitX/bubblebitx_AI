@@ -591,7 +591,7 @@ export default function App() {
                                     rel="noopener noreferrer"
                                     className="text-[10px] text-gray-400 hover:text-black transition-colors inline-flex items-center gap-1 hover:underline font-medium"
                                   >
-                                    Can't see the form? Open Tally in a new tab <ArrowUpRight className="w-3 h-3" />
+                                    Can't see the form? Open in a new tab <ArrowUpRight className="w-3 h-3" />
                                   </a>
                                 </div>
                               </div>
