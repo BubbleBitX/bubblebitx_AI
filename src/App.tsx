@@ -187,12 +187,12 @@ export default function App() {
         {/* Interactive Content Layer */}
         <div 
           id="content-layer"
-          className="relative z-10 flex flex-col h-full overflow-y-auto lg:overflow-hidden no-scrollbar p-4 sm:p-8 pt-24 sm:pt-28 lg:pt-8"
+          className="relative z-10 flex flex-col h-full overflow-y-auto lg:overflow-hidden no-scrollbar px-5 pb-8 pt-24 sm:px-8 sm:pb-8 sm:pt-28 lg:pt-8"
         >
           {/* Absolute layout container for Hero & Form */}
           <div 
             id="bottom-row"
-            className="relative lg:absolute lg:inset-0 pointer-events-auto lg:pointer-events-none flex flex-col lg:block w-full min-h-full lg:min-h-0 mt-4 lg:mt-0 pb-8 lg:pb-0 gap-8 sm:gap-12"
+            className="relative lg:absolute lg:inset-0 pointer-events-auto lg:pointer-events-none flex flex-col lg:block w-full max-w-7xl mx-auto min-h-full lg:min-h-0 mt-2 lg:mt-0 pb-8 lg:pb-0 gap-8 sm:gap-12"
           >
             {/* Headline Section (Left) */}
             <HeroSection />
