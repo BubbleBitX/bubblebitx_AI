@@ -48,7 +48,9 @@ export default function App() {
     setMenuOpen(false);
     
     // Smooth scroll the interactive card into view for mobile users
-    cardRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      cardRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // Toggle selected service chips
@@ -192,7 +194,7 @@ export default function App() {
           {/* Absolute layout container for Hero & Form */}
           <div 
             id="bottom-row"
-            className="relative lg:absolute lg:inset-0 pointer-events-auto lg:pointer-events-none flex flex-col lg:block w-full max-w-7xl mx-auto min-h-full lg:min-h-0 mt-2 lg:mt-0 pb-8 lg:pb-0 gap-8 sm:gap-12"
+            className="relative lg:absolute lg:inset-0 pointer-events-auto flex flex-col lg:block w-full max-w-7xl mx-auto min-h-full lg:min-h-0 mt-2 lg:mt-0 pb-8 lg:pb-0 gap-8 sm:gap-12"
           >
             {/* Headline Section (Left) */}
             <HeroSection />

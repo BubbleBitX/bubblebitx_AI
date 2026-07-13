@@ -26,11 +26,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header 
       id="navbar-header" 
-      className="absolute top-4 md:top-8 left-4 md:left-8 lg:left-12 right-4 md:right-8 lg:right-12 z-50 flex flex-col items-center lg:items-start gap-2"
+      className="absolute top-4 md:top-8 left-4 md:left-8 lg:left-12 right-4 md:right-8 lg:right-12 z-50 flex flex-col items-center lg:items-start gap-2 pointer-events-none"
     >
       <div 
         id="navbar-pill"
-        className="bg-white/60 backdrop-blur-md rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-none lg:w-auto flex items-center justify-between lg:justify-start gap-4 lg:gap-6 border border-white/40"
+        className="bg-white/60 backdrop-blur-md rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-none lg:w-auto flex items-center justify-between lg:justify-start gap-4 lg:gap-6 border border-white/40 pointer-events-auto"
       >
         {/* Stylized Logo & Name */}
         <div id="navbar-logo-group" className="flex items-center gap-2">
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
       {menuOpen && (
         <div 
           id="mobile-dropdown-menu"
-          className="lg:hidden w-full max-w-md sm:max-w-xl md:max-w-2xl bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-white/40 p-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200"
+          className="lg:hidden w-full max-w-md sm:max-w-xl md:max-w-2xl bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-white/40 p-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200 pointer-events-auto"
         >
           <nav className="flex flex-col gap-2" aria-label="Mobile Navigation">
             {navLinks.map((link) => (
