@@ -7,8 +7,9 @@ interface IndustriesViewProps {
 
 export const IndustriesView: React.FC<IndustriesViewProps> = ({ navigateToPage }) => {
   return (
-    <div className="flex flex-col gap-4 animate-in fade-in duration-200">
-      {/* Heading */}
+    <div className="h-full flex flex-col justify-between gap-4 animate-in fade-in duration-200">
+      <div className="flex flex-col gap-4">
+        {/* Heading */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <div className="p-1.5 rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center">
@@ -45,6 +46,8 @@ export const IndustriesView: React.FC<IndustriesViewProps> = ({ navigateToPage }
           </div>
           <p className="text-[11px] text-gray-500 mt-1 font-normal">Immediate trial follow-up, customer onboarding, and secure system support.</p>
         </div>
+      </div>
+
       </div>
 
       {/* Footer navigation */}

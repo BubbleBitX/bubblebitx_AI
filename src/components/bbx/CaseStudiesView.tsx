@@ -27,8 +27,9 @@ export const CaseStudiesView: React.FC<CaseStudiesViewProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3.5 animate-in fade-in duration-200">
-      {/* Heading */}
+    <div className="h-full flex flex-col justify-between gap-3.5 animate-in fade-in duration-200">
+      <div className="flex flex-col gap-3.5">
+        {/* Heading */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <div className="p-1.5 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center shrink-0">
@@ -134,6 +135,8 @@ export const CaseStudiesView: React.FC<CaseStudiesViewProps> = ({
           </button>
         </div>
       )}
+
+      </div>
 
       {/* Footer navigation */}
       <div className="flex items-center justify-between gap-3 mt-1.5 pt-3 border-t border-gray-100 font-semibold">

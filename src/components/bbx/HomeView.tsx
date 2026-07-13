@@ -43,8 +43,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
   nameInputRef
 }) => {
   return (
-    <div className="flex flex-col gap-2.5 sm:gap-3 lg:gap-2.5 xl:gap-3">
-      {/* Compact Unified Header */}
+    <div className="h-full flex flex-col justify-between gap-3.5">
+      <div className="flex flex-col gap-2.5 sm:gap-3 lg:gap-2.5 xl:gap-3 flex-1">
+        {/* Compact Unified Header */}
       <div className="flex flex-col gap-1 bg-gray-50/50 p-3 rounded-2xl border border-gray-100/60 shrink-0">
         <h2 id="form-heading" className="text-sm sm:text-base font-bold text-black tracking-tight leading-none">
           {formType === 'brief' ? 'Detailed Project Briefing' : "Let's Build Your AI Workforce"}
@@ -249,6 +250,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </button>
         </div>
       )}
+
+      </div>
 
       {/* Unified Sleek Footer for email & socials */}
       <div className="flex items-center justify-between text-[10px] text-gray-400 mt-1 px-1 border-t border-gray-100 pt-2 shrink-0 font-normal">

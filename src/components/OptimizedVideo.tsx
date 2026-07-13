@@ -10,6 +10,7 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({ src }) => {
   const [isClient, setIsClient] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [posterError, setPosterError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasLoadedSrc = useRef(false);
 
@@ -92,15 +93,18 @@ const OptimizedVideo: React.FC<OptimizedVideoProps> = ({ src }) => {
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0 bg-black">
       {/* 1. High-performance Poster Image - Rendered immediately */}
-      <img
-        src={videoPoster}
-        alt="BubbleBitX AI Core background loading"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out z-10 ${
-          videoLoaded ? 'opacity-0' : 'opacity-100'
-        }`}
-        loading="eager"
-        referrerPolicy="no-referrer"
-      />
+      {!posterError && (
+        <img
+          src={videoPoster}
+          alt=""
+          onError={() => setPosterError(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out z-10 ${
+            videoLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+          loading="eager"
+          referrerPolicy="no-referrer"
+        />
+      )}
 
       {/* 2. Defer-loaded Background Video */}
       {shouldLoadVideo && (

@@ -7,8 +7,9 @@ interface SolutionsViewProps {
 
 export const SolutionsView: React.FC<SolutionsViewProps> = ({ navigateToPage }) => {
   return (
-    <div className="flex flex-col gap-4 animate-in fade-in duration-200">
-      {/* Heading */}
+    <div className="h-full flex flex-col justify-between gap-4 animate-in fade-in duration-200">
+      <div className="flex flex-col gap-4">
+        {/* Heading */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <div className="p-1.5 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
@@ -51,6 +52,8 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ navigateToPage }) 
             <p className="text-[11px] text-gray-500 mt-0.5 font-normal">Synchronizes WhatsApp, Gmail, Stripe, and HubSpot in high-fidelity.</p>
           </div>
         </div>
+      </div>
+
       </div>
 
       {/* Footer navigation */}

@@ -75,11 +75,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
     >
       <div 
         id="contact-card"
-        className={`bg-white rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 border border-gray-100 flex flex-col ${
-          activePage === 'case-studies'
-            ? 'p-3.5 sm:p-5 lg:p-3.5 xl:p-5 gap-2.5 sm:gap-3.5 lg:gap-2.5 xl:gap-3.5'
-            : 'p-4 sm:p-6 lg:p-4 xl:p-6 gap-3.5 sm:gap-4 lg:gap-3 xl:gap-4'
-        }`}
+        className="bg-white rounded-[32px] shadow-2xl overflow-hidden border border-gray-100 flex flex-col p-5 sm:p-6 lg:p-5 xl:p-6 gap-4 sm:gap-5 h-[590px] sm:h-[660px] lg:h-[580px] xl:h-[660px]"
       >
         {/* Horizontal Navigation Dots / Tiny Pills for the slide deck */}
         <div id="card-nav-tabs" className="flex items-center justify-between gap-0.5 bg-gray-50 p-1 rounded-2xl border border-gray-100">
@@ -103,7 +99,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
         </div>
 
         {/* Sliding content viewport */}
-        <div className="relative overflow-y-auto overflow-x-hidden w-full max-h-[500px] sm:max-h-[560px] md:max-h-[600px] lg:max-h-[480px] xl:max-h-[600px] pr-0.5 scrollbar-thin">
+        <div className="relative overflow-y-auto overflow-x-hidden w-full flex-1 min-h-0 pr-0.5 scrollbar-thin">
           <AnimatePresence mode="wait" custom={direction} initial={false}>
             <motion.div
               key={activePage}
@@ -112,7 +108,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full flex flex-col justify-between"
+              className="w-full h-full flex flex-col justify-between"
             >
               {activePage === 'home' && (
                 <HomeView

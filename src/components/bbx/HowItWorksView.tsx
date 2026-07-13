@@ -7,8 +7,9 @@ interface HowItWorksViewProps {
 
 export const HowItWorksView: React.FC<HowItWorksViewProps> = ({ navigateToPage }) => {
   return (
-    <div className="flex flex-col gap-4 animate-in fade-in duration-200">
-      {/* Heading */}
+    <div className="h-full flex flex-col justify-between gap-4 animate-in fade-in duration-200">
+      <div className="flex flex-col gap-4">
+        {/* Heading */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <div className="p-1.5 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center">
@@ -39,6 +40,8 @@ export const HowItWorksView: React.FC<HowItWorksViewProps> = ({ navigateToPage }
           <h3 className="text-xs sm:text-sm font-bold text-black">Full Launch & Synchronization</h3>
           <p className="text-[11px] text-gray-500 mt-0.5 font-normal">Agents plug directly into CRM systems, WhatsApp numbers, and active telephone networks.</p>
         </div>
+      </div>
+
       </div>
 
       {/* Footer navigation */}
