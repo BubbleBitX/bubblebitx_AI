@@ -75,7 +75,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
     >
       <div 
         id="contact-card"
-        className="bg-white rounded-[32px] shadow-2xl overflow-hidden border border-gray-100 flex flex-col p-5 sm:p-6 lg:p-5 xl:p-6 gap-4 sm:gap-5 h-[590px] sm:h-[660px] lg:h-[580px] xl:h-[660px] mb-3"
+        className="bg-white rounded-[32px] shadow-2xl overflow-hidden border border-gray-100 flex flex-col p-5 sm:p-6 lg:p-5 xl:p-6 gap-4 sm:gap-5 h-[590px] sm:h-[660px] lg:h-[580px] xl:h-[660px] mb-3 lg:mb-0"
       >
         {/* Horizontal Navigation Dots / Tiny Pills for the slide deck */}
         <div id="card-nav-tabs" className="flex items-center justify-between gap-0.5 bg-gray-50 p-1 rounded-2xl border border-gray-100">
