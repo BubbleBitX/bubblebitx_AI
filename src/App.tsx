@@ -149,10 +149,33 @@ export default function App() {
       }
     } catch (err) {
       console.error("Error sending lead to Discord webhook:", err);
-    } finally {
-      setSent(true);
-      setSending(false);
     }
+
+    // Call the newly created secure backend Resend route for automated email delivery
+    try {
+      const emailResponse = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          servicesText,
+          message: message.trim()
+        })
+      });
+
+      if (!emailResponse.ok) {
+        const errorData = await emailResponse.json();
+        console.error("Backend failed to deliver email automatedly:", errorData.error);
+      }
+    } catch (err) {
+      console.error("Error sending lead via Resend backend API:", err);
+    }
+
+    setSent(true);
+    setSending(false);
   };
 
   // Reset form to allow another submission
