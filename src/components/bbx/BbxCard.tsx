@@ -71,7 +71,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
     <div 
       ref={cardRef}
       id="contact-form-outer"
-      className="relative lg:absolute pointer-events-auto right-0 lg:right-12 bottom-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 left-0 lg:left-auto w-full max-w-md lg:max-w-none lg:w-[440px] z-40 mx-auto lg:mx-0 shrink-0"
+      className="relative lg:absolute pointer-events-auto right-0 lg:right-12 bottom-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 left-0 lg:left-auto w-full max-w-md lg:max-w-none lg:w-[440px] z-40 mx-auto lg:mx-0 shrink-0 mb-12 lg:mb-0"
     >
       <div 
         id="contact-card"
