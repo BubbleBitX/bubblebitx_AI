@@ -38,6 +38,7 @@ interface BbxCardProps {
   currentCaseIdx: number;
   setCurrentCaseIdx: React.Dispatch<React.SetStateAction<number>>;
   setSelectedCaseStudy: (study: CaseStudy) => void;
+  emailStatus: { success: boolean; simulated: boolean; error?: string } | null;
 }
 
 export const BbxCard: React.FC<BbxCardProps> = ({
@@ -65,7 +66,8 @@ export const BbxCard: React.FC<BbxCardProps> = ({
   nameInputRef,
   currentCaseIdx,
   setCurrentCaseIdx,
-  setSelectedCaseStudy
+  setSelectedCaseStudy,
+  emailStatus
 }) => {
   return (
     <div 
@@ -129,6 +131,7 @@ export const BbxCard: React.FC<BbxCardProps> = ({
                   handleSubmit={handleSubmit}
                   handleResetForm={handleResetForm}
                   nameInputRef={nameInputRef}
+                  emailStatus={emailStatus}
                 />
               )}
 

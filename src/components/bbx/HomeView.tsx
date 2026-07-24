@@ -21,6 +21,7 @@ interface HomeViewProps {
   handleSubmit: (e: React.FormEvent) => void;
   handleResetForm: () => void;
   nameInputRef: React.RefObject<HTMLInputElement | null>;
+  emailStatus: { success: boolean; simulated: boolean; error?: string } | null;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -40,7 +41,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
   setOtherServiceText,
   handleSubmit,
   handleResetForm,
-  nameInputRef
+  nameInputRef,
+  emailStatus
 }) => {
   return (
     <div className="h-full flex flex-col justify-between gap-3.5">
@@ -211,45 +213,105 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </button>
           </form>
         )
-      ) : (
-        /* Success State shown in place of the form */
-        <div 
-          id="success-state"
-          className="flex flex-col items-center justify-center py-6 gap-3 text-center"
-        >
+      ) : (() => {
+        const mailtoSubject = encodeURIComponent(`🚀 New AI Strategy Request - ${name.trim() || 'Client'}`);
+        const mailtoBody = encodeURIComponent(
+          `Name: ${name.trim()}\n` +
+          `Business Email: ${email.trim()}\n` +
+          `Requested Services: ${selected.join(", ") || 'None selected'}\n\n` +
+          `Challenges / Business Goals:\n${message.trim() || 'No message provided'}`
+        );
+        const mailtoUrl = `mailto:bubblebitxt@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+        return (
+          /* Success State shown in place of the form */
           <div 
-            id="check-pill"
-            className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-xl text-green-600 font-bold"
+            id="success-state"
+            className="flex flex-col items-center justify-center py-4 gap-2 text-center"
           >
-            ✓
-          </div>
-          <h3 id="success-heading" className="text-base font-semibold text-gray-900">
-            You're all set!
-          </h3>
-          <p id="success-text" className="text-sm text-gray-500 max-w-xs leading-normal font-normal">
-            Expect a reply within 24 hours, or secure a direct session on our calendar right now:
-          </p>
-
-          <div className="flex flex-col gap-2 w-full max-w-xs mt-1">
-            <a
-              href="https://calendly.com/bubblebitxt/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-[#0B1528] hover:bg-[#15233c] text-white text-xs font-semibold py-2.5 rounded-xl transition-all text-center shadow-md flex items-center justify-center gap-1.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0B1528] focus:ring-offset-2"
+            <div 
+              id="check-pill"
+              className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-lg text-green-600 font-bold"
             >
-              Book Session Instantly <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
+              ✓
+            </div>
+            <h3 id="success-heading" className="text-sm font-semibold text-gray-900">
+              You're all set!
+            </h3>
+            <p id="success-text" className="text-[11px] text-gray-500 max-w-xs leading-normal font-normal">
+              Expect a reply within 24 hours, or secure a direct session on our calendar right now:
+            </p>
 
-          <button
-            type="button"
-            onClick={handleResetForm}
-            className="mt-4 text-xs text-gray-400 hover:text-black hover:underline transition-all cursor-pointer focus:outline-none focus:underline"
-          >
-            Send another message
-          </button>
-        </div>
-      )}
+            <div className="flex flex-col gap-2 w-full max-w-xs mt-0.5">
+              <a
+                href="https://calendly.com/bubblebitxt/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#0B1528] hover:bg-[#15233c] text-white text-[11px] font-semibold py-2 rounded-xl transition-all text-center shadow-md flex items-center justify-center gap-1.5 cursor-pointer focus:outline-none"
+              >
+                Book Session Instantly <ArrowUpRight className="w-3 h-3" />
+              </a>
+            </div>
+
+            {/* Email Status Diagnostics */}
+            {emailStatus && (
+              <div className="w-full max-w-xs mt-1.5 text-left bg-gray-50 p-2.5 rounded-xl border border-gray-100 flex flex-col gap-1.5">
+                {emailStatus.simulated ? (
+                  <>
+                    <div className="flex items-center gap-1 text-blue-600">
+                      <span className="text-[10px] font-semibold">ℹ️ Simulation Notice</span>
+                    </div>
+                    <p className="text-[9px] text-gray-500 leading-tight">
+                      <code className="text-[9px] text-gray-700 bg-gray-100 px-1 py-0.5 rounded font-mono">RESEND_API_KEY</code> is not yet configured in secrets.
+                    </p>
+                    <a
+                      href={mailtoUrl}
+                      className="w-full mt-0.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-[9px] font-bold py-1.5 rounded-lg text-center transition-all inline-flex items-center justify-center gap-1 cursor-pointer"
+                    >
+                      Open Pre-filled Email Draft ✉️
+                    </a>
+                  </>
+                ) : emailStatus.error ? (
+                  <>
+                    <div className="flex items-center gap-1 text-amber-600">
+                      <span className="text-[10px] font-semibold">⚠️ Delivery Check Needed</span>
+                    </div>
+                    <p className="text-[9px] text-gray-500 leading-tight">
+                      Resend API rejected delivery: <span className="font-semibold text-red-600 font-mono text-[8px] block mt-0.5 break-words">{emailStatus.error}</span>
+                    </p>
+                    <p className="text-[9px] text-gray-400 leading-tight mt-0.5">
+                      Free Resend accounts are restricted to the account owner's email address by default unless you verify your domain.
+                    </p>
+                    <a
+                      href={mailtoUrl}
+                      className="w-full mt-1 bg-amber-50 hover:bg-amber-100 text-amber-800 text-[9px] font-bold py-1.5 rounded-lg text-center transition-all inline-flex items-center justify-center gap-1 cursor-pointer"
+                    >
+                      Complete Delivery with 1-Click ✉️
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-1 text-green-600">
+                      <span className="text-[10px] font-semibold">✅ Dispatched Successfully</span>
+                    </div>
+                    <p className="text-[9px] text-gray-500 leading-tight">
+                      Request successfully sent to <strong className="text-gray-700">bubblebitxt@gmail.com</strong> via Resend API.
+                    </p>
+                  </>
+                )}
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleResetForm}
+              className="mt-2 text-[10px] text-gray-400 hover:text-black hover:underline transition-all cursor-pointer focus:outline-none"
+            >
+              Send another message
+            </button>
+          </div>
+        );
+      })()}
 
       </div>
 

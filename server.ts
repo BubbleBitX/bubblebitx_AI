@@ -38,6 +38,7 @@ async function startServer() {
         console.warn("RESEND_API_KEY is not configured. Email will not be delivered, but mimicking success for testing.");
         return res.status(200).json({ 
           success: true, 
+          simulated: true,
           message: "Email sending simulated because RESEND_API_KEY is not set." 
         });
       }

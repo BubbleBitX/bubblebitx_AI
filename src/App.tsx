@@ -5,6 +5,7 @@ import Header from './components/layout/Header';
 import HeroSection from './components/layout/HeroSection';
 import BbxCard from './components/bbx/BbxCard';
 import CaseStudyOverlay from './components/bbx/CaseStudyOverlay';
+import IntroVideoPlayer from './components/IntroVideoPlayer';
 import { CaseStudy } from './types';
 import { PAGE_ORDER } from './constants/caseStudies';
 
@@ -21,6 +22,11 @@ export default function App() {
   const [sent, setSent] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [formType, setFormType] = useState<'quick' | 'brief'>('quick');
+  const [emailStatus, setEmailStatus] = useState<{
+    success: boolean;
+    simulated: boolean;
+    error?: string;
+  } | null>(null);
 
   // Case studies interactive states
   const [currentCaseIdx, setCurrentCaseIdx] = useState<number>(0);
@@ -166,12 +172,28 @@ export default function App() {
         })
       });
 
-      if (!emailResponse.ok) {
-        const errorData = await emailResponse.json();
-        console.error("Backend failed to deliver email automatedly:", errorData.error);
+      const emailData = await emailResponse.json();
+
+      if (emailResponse.ok) {
+        setEmailStatus({
+          success: true,
+          simulated: !!emailData.simulated
+        });
+      } else {
+        console.error("Backend failed to deliver email automatedly:", emailData.error);
+        setEmailStatus({
+          success: false,
+          simulated: false,
+          error: emailData.error || "Failed to deliver email."
+        });
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error sending lead via Resend backend API:", err);
+      setEmailStatus({
+        success: false,
+        simulated: false,
+        error: err.message || "Network error. Connection failed."
+      });
     }
 
     setSent(true);
@@ -186,6 +208,7 @@ export default function App() {
     setSelected([]);
     setOtherServiceText("");
     setSent(false);
+    setEmailStatus(null);
   };
 
   return (
@@ -249,9 +272,13 @@ export default function App() {
               currentCaseIdx={currentCaseIdx}
               setCurrentCaseIdx={setCurrentCaseIdx}
               setSelectedCaseStudy={setSelectedCaseStudy}
+              emailStatus={emailStatus}
             />
           </div>
         </div>
+
+        {/* Floating Intro Video Player & Popup Module */}
+        <IntroVideoPlayer />
 
         {/* Full-Screen Immersive Case Study Overlay with Glassmorphism */}
         <AnimatePresence>
