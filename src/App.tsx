@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { AnimatePresence } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
 import OptimizedVideo from './components/OptimizedVideo';
 import Header from './components/layout/Header';
 import HeroSection from './components/layout/HeroSection';
@@ -290,6 +291,7 @@ export default function App() {
           )}
         </AnimatePresence>
       </div>
+      <Analytics />
     </div>
   );
 }
