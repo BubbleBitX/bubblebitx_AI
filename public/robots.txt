@@ -1,4 +1,37 @@
+# robots.txt for BubbleBitX (https://bubblebitx.com/)
 User-agent: *
 Allow: /
+Disallow: /api/
 
+# Explicitly welcome AI Search, Generative Engines, and LLM Indexers
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+
+# Sitemaps & Machine-Readable Context
 Sitemap: https://bubblebitx.com/sitemap.xml
+Host: https://bubblebitx.com

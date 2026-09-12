@@ -24,6 +24,21 @@ async function startServer() {
   // Middleware to parse JSON request bodies
   app.use(express.json());
 
+  // Explicit text/plain endpoints for LLM standards
+  app.get("/llms.txt", (req, res, next) => {
+    const llmsPath = path.join(process.cwd(), "public", "llms.txt");
+    res.type("text/plain; charset=utf-8").sendFile(llmsPath, (err) => {
+      if (err) next();
+    });
+  });
+
+  app.get("/llms-full.txt", (req, res, next) => {
+    const llmsFullPath = path.join(process.cwd(), "public", "llms-full.txt");
+    res.type("text/plain; charset=utf-8").sendFile(llmsFullPath, (err) => {
+      if (err) next();
+    });
+  });
+
   // API Route for sending emails via Resend
   app.post("/api/send-email", async (req, res) => {
     try {

@@ -39,7 +39,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- JSON-LD Structured Schema Data for Search Engine Rich Snippets -->
+    <!-- Machine-Readable LLM Standards -->
+    <link rel="alternate" type="text/plain" href="https://bubblebitx.com/llms.txt" title="LLM Summary" />
+    <link rel="alternate" type="text/plain" href="https://bubblebitx.com/llms-full.txt" title="LLM Full Reference" />
+
+    <script>
+      // Intercept expected benign HMR websocket disconnection in sandboxed environments
+      window.addEventListener('unhandledrejection', function (e) {
+        var msg = (e && e.reason && (e.reason.message || e.reason.toString())) || '';
+        if (typeof msg === 'string' && msg.indexOf('WebSocket closed without opened') !== -1) {
+          e.preventDefault();
+        }
+      });
+    </script>
+
+    <!-- JSON-LD Structured Schema Data for Search Engines & Answer Engines -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -48,13 +62,24 @@
             "@type": "Organization",
             "@id": "https://bubblebitx.com/#organization",
             "name": "BubbleBitX",
+            "legalName": "BubbleBitX",
             "url": "https://bubblebitx.com/",
             "logo": "https://bubblebitx.com/BBX-LOGO.png",
+            "email": "hello@bubblebitx.com",
             "sameAs": [
-              "https://twitter.com/bubblebitx",
-              "https://instagram.com/bubblebitx"
+              "https://in.linkedin.com/company/bubblebitx",
+              "https://www.youtube.com/@bubblebitx",
+              "https://www.instagram.com/bubblebitxt/",
+              "https://twitter.com/bubblebitx"
             ],
-            "description": "Engineers of high-performance autonomous AI workforces and custom agents to automate support, sales, and operations."
+            "description": "Engineers of high-performance autonomous AI workforces and custom digital employees to automate phone support, sales qualification, CRM workflows, and back-office operations.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "hello@bubblebitx.com",
+              "url": "https://calendly.com/bubblebitxt/30min",
+              "availableLanguage": ["English"]
+            }
           },
           {
             "@type": "WebSite",
@@ -81,23 +106,405 @@
             "about": {
               "@id": "https://bubblebitx.com/#organization"
             },
+            "breadcrumb": {
+              "@id": "https://bubblebitx.com/#breadcrumb"
+            },
             "description": "Engage high-performance, autonomous AI workforces and custom agents engineered to scale business operations."
           },
           {
+            "@type": "BreadcrumbList",
+            "@id": "https://bubblebitx.com/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://bubblebitx.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Solutions",
+                "item": "https://bubblebitx.com/#solutions"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Industries",
+                "item": "https://bubblebitx.com/#industries"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "How It Works",
+                "item": "https://bubblebitx.com/#how-it-works"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Case Studies",
+                "item": "https://bubblebitx.com/#case-studies"
+              }
+            ]
+          },
+          {
             "@type": "Service",
-            "name": "Autonomous AI Workforce",
+            "@id": "https://bubblebitx.com/#service-receptionist",
+            "name": "AI Receptionist & Lead Qualifier",
+            "serviceType": "Inbound AI Lead Automation",
             "provider": {
               "@id": "https://bubblebitx.com/#organization"
             },
-            "description": "Custom autonomous AI agents configured to handle phone calls, lead qualification, CRM workflows, WhatsApp interaction, and custom back-office operations.",
+            "description": "Captures, qualifies, and schedules meetings 24/7 on complete autopilot with sub-second response times.",
             "areaServed": "Worldwide"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://bubblebitx.com/#service-voice",
+            "name": "Intelligent Voice Agent",
+            "serviceType": "Conversational Voice AI",
+            "provider": {
+              "@id": "https://bubblebitx.com/#organization"
+            },
+            "description": "Automates voice telephone support, inbound call answering, and outbound scheduling calls with human-cadence speech synthesis.",
+            "areaServed": "Worldwide"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://bubblebitx.com/#service-crm",
+            "name": "Operations & CRM Synchronization",
+            "serviceType": "Enterprise System Integration",
+            "provider": {
+              "@id": "https://bubblebitx.com/#organization"
+            },
+            "description": "Synchronizes WhatsApp, Gmail, Stripe, and HubSpot with zero data loss and automated multi-step workflows.",
+            "areaServed": "Worldwide"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://bubblebitx.com/#service-rag",
+            "name": "Enterprise Knowledge AI & RAG",
+            "serviceType": "Document Intelligence",
+            "provider": {
+              "@id": "https://bubblebitx.com/#organization"
+            },
+            "description": "Enterprise Retrieval-Augmented Generation platform with governed AI responses, anti-hallucination guardrails, and complete audit trails.",
+            "areaServed": "Worldwide"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://bubblebitx.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is BubbleBitX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "BubbleBitX is an AI systems and automation firm that designs, builds, and deploys high-performance autonomous AI workforces and custom digital employees for growing businesses."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is an autonomous AI workforce?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An autonomous AI workforce is a coordinated suite of specialized AI agents engineered to handle specific operational workflows—such as telephone reception, customer support, lead qualification, CRM updates, and data synchronization—autonomously 24/7."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which CRMs and platforms does BubbleBitX integrate with?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "BubbleBitX systems integrate natively with HubSpot, Salesforce, WhatsApp Business API, Stripe, Gmail, Slack, n8n, LangChain, Twilio, PostgreSQL, and custom REST/GraphQL APIs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What results have BubbleBitX client implementations achieved?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Documented client results include 40% faster recruitment and $200M+ saved in clinical trial compliance, 60% document research savings in legal RAG, 20% lower logistics costs in supply chain, 50% less manual administrative work in operations, and +43% tour bookings in real estate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does the BubbleBitX 3-step integration process work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The integration process consists of: 1) AI Blueprint & Design (analyzing procedures and mapping automations), 2) Model Engineering & Training (fine-tuning context and voice latency), and 3) Full Launch & Synchronization (connecting directly into CRMs and telephony trunks)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I book a consultation or get started with BubbleBitX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can schedule a free 30-minute AI strategy consultation directly via Calendly at https://calendly.com/bubblebitxt/30min or submit your business requirements via the on-page strategy form at https://bubblebitx.com/."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://bubblebitx.com/#case-studies",
+            "name": "BubbleBitX Production Case Studies",
+            "description": "Verified production deployments of autonomous AI workforces across enterprise sectors.",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Clinical Trial AI Platform",
+                  "description": "Multi-agent AI platform automating patient eligibility screening, trial protocol compliance, and real-time safety monitoring.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "Healthcare, Pharmaceutical, Gemini Pro, Claude 3.5 Sonnet, LangGraph",
+                  "timeRequired": "P6M"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Enterprise Knowledge AI",
+                  "description": "Enterprise RAG platform providing governed AI responses, contract search, and complete compliance audit trails.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "Legal, Compliance, OpenAI GPT-4, Pinecone, LlamaIndex",
+                  "timeRequired": "P4M"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "Supply Chain AI Orchestrator",
+                  "description": "Multi-agent system coordinating inventory, dynamic procurement, and transit route re-optimization.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "Logistics, Gemini Flash, Python, Redis, PostgreSQL",
+                  "timeRequired": "P4M"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "AI Workflow Automation",
+                  "description": "Intelligent automation using n8n and LLMs featuring self-healing workflows that fix dynamic API schema changes.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "Business Operations, n8n, LangChain, HubSpot, Stripe",
+                  "timeRequired": "P2.5M"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "AI Product Classification",
+                  "description": "NLP classification pipeline using fine-tuned BERT and custom entity extraction processing 10,000+ daily SKUs.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "E-Commerce, PyTorch, HuggingFace, FastAPI, Docker",
+                  "timeRequired": "P3M"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "AI Security Assistant",
+                  "description": "Incident triage assistant correlating SIEM telemetry using LLMs to eliminate analyst alert fatigue.",
+                  "creator": { "@id": "https://bubblebitx.com/#organization" },
+                  "keywords": "Cyber Security, Llama-3, LangChain, Qdrant, Elasticsearch",
+                  "timeRequired": "P3M"
+                }
+              }
+            ]
           }
         ]
       }
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- 
+      Pre-rendered Semantic HTML Layer:
+      Ensures search engines, AI answer engines (Perplexity, GPTBot, ClaudeBot),
+      and assistive screen readers receive 100% of the structured textual facts,
+      services, case studies, and FAQs on the initial HTTP GET response.
+      React Client hydrates and takes over this element when JavaScript initializes.
+    -->
+    <div id="root">
+      <header id="prerender-header" style="padding: 1rem; border-bottom: 1px solid #e5e7eb; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <img src="/BBX-LOGO.png" alt="BubbleBitX Logo" width="40" height="40" style="height: 40px; width: auto;" />
+          <strong style="font-size: 1.25rem;">BubbleBitX</strong>
+        </div>
+        <nav aria-label="Main Navigation">
+          <ul style="display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;">
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#case-studies">Case Studies</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://calendly.com/bubblebitxt/30min" style="font-weight: bold; color: #0b1528;">Book Strategy Call</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main id="prerender-main" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+        <!-- Hero Section -->
+        <section id="hero" style="margin-bottom: 3rem;">
+          <h1 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem;">AI Employees Built for Growing Businesses</h1>
+          <p style="font-size: 1.25rem; color: #4b5563; max-width: 48rem; margin-bottom: 1.5rem;">
+            Reduce costs. Automate operations. Increase revenue. BubbleBitX deploys high-performance autonomous AI workforces and custom digital employees engineered to scale business operations.
+          </p>
+          <div>
+            <a href="https://calendly.com/bubblebitxt/30min" style="display: inline-block; background: #0B1528; color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.75rem; text-decoration: none; font-weight: bold; margin-right: 1rem;">Book Free Strategy Call</a>
+            <a href="mailto:hello@bubblebitx.com" style="color: #0B1528; text-decoration: underline;">Contact hello@bubblebitx.com</a>
+          </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" style="margin-bottom: 3rem;">
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">AI Workforce Solutions</h2>
+          <p style="color: #4b5563; margin-bottom: 1.5rem;">Deploy fully-integrated digital employees configured for your specific operational goals.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #f9fafb;">
+              <h3 style="font-size: 1.25rem; margin-top: 0;">AI Receptionist &amp; Lead Qualifier</h3>
+              <p style="color: #4b5563;">Captures, qualifies, and schedules meetings 24/7 on complete autopilot with sub-second response times.</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #f9fafb;">
+              <h3 style="font-size: 1.25rem; margin-top: 0;">Intelligent Voice Agents</h3>
+              <p style="color: #4b5563;">Automates telephone customer support, inbound routing, and outbound scheduling with natural human conversational cadence.</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #f9fafb;">
+              <h3 style="font-size: 1.25rem; margin-top: 0;">Operations &amp; CRM Synchronization</h3>
+              <p style="color: #4b5563;">Synchronizes WhatsApp, Gmail, Stripe, and HubSpot in real-time with zero data loss.</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #f9fafb;">
+              <h3 style="font-size: 1.25rem; margin-top: 0;">Enterprise Knowledge AI &amp; RAG</h3>
+              <p style="color: #4b5563;">Retrieval-Augmented Generation with strict anti-hallucination compliance guardrails and complete audit logs.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Industries Section -->
+        <section id="industries" style="margin-bottom: 3rem;">
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">Industries We Transform</h2>
+          <p style="color: #4b5563; margin-bottom: 1.5rem;">Customized integrations that deliver massive, measurable business outcomes.</p>
+          <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+            <li style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.25rem; background: #f9fafb;">
+              <strong>Real Estate &amp; Agencies</strong> (+43% Tours Booked)
+              <p style="color: #4b5563; margin: 0.5rem 0 0;">Immediate lead qualification, automated property details, and tour scheduling.</p>
+            </li>
+            <li style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.25rem; background: #f9fafb;">
+              <strong>E-Commerce &amp; Brands</strong> (84% Auto Resolved)
+              <p style="color: #4b5563; margin: 0.5rem 0 0;">Order tracking lookups, returns collection, and abandoned cart recovery.</p>
+            </li>
+            <li style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.25rem; background: #f9fafb;">
+              <strong>Professional &amp; SaaS</strong> (4x Conversion Rates)
+              <p style="color: #4b5563; margin: 0.5rem 0 0;">Immediate trial follow-up, customer onboarding, and secure system support.</p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Process Section -->
+        <section id="how-it-works" style="margin-bottom: 3rem;">
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">Our 3-Step Integration Methodology</h2>
+          <ol style="padding-left: 1.5rem; color: #4b5563; line-height: 1.8;">
+            <li><strong>AI Blueprint &amp; Design:</strong> We analyze historical logs and communication procedures to architect the optimal automation blueprints.</li>
+            <li><strong>Model Engineering &amp; Training:</strong> Custom context calibration, speech latency tuning, and anti-hallucination guardrails.</li>
+            <li><strong>Full Launch &amp; Synchronization:</strong> Direct integration with existing CRM systems, WhatsApp Business APIs, and telephony trunks.</li>
+          </ol>
+        </section>
+
+        <!-- Verified Case Studies Section -->
+        <section id="case-studies" style="margin-bottom: 3rem;">
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">Verified Production Case Studies</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">Healthcare • Pharma</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">Clinical Trial AI Platform</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">Multi-agent platform automating patient eligibility, trial compliance, and safety telemetry.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: 40% Faster Recruitment • 58% Less Deviations • $200M+ Losses Avoided</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 6 Months • Tech: Gemini Pro, Claude 3.5 Sonnet, LangGraph, Python, Vector DB</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">Legal • Compliance • Enterprise</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">Enterprise Knowledge AI</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">Enterprise RAG platform with governed AI responses and complete compliance audit trails.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: 60% Research Savings • 100% Auditable Logs • Active Assistant</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 4 Months • Tech: OpenAI GPT-4, Pinecone, LlamaIndex, React, Node.js, AWS</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">Logistics</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">Supply Chain AI Orchestrator</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">Multi-agent coordinator for warehouse, fleet routing, and predictive procurement.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: 20% Lower Logistics Costs • 15% Lower Inventory Costs • Instant Disruption Response</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 4 Months • Tech: Python, FastStream, Redis, PostgreSQL, Gemini Flash</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">Business Operations</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">AI Workflow Automation</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">Intelligent automation platform using n8n and LLMs with self-healing workflows.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: 50% Less Manual Work • Self-Healing State Machine • Scaled Operations</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 2.5 Months • Tech: n8n, LangChain, Make.com, HubSpot, Stripe, OpenAI</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">E-Commerce</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">AI Product Classification</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">NLP classification pipeline using fine-tuned BERT and custom entity extraction.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: 30% Higher Accuracy • 10,000+ SKUs Daily • 200h+ Saved Monthly</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 3 Months • Tech: PyTorch, HuggingFace, FastAPI, Docker, PostgreSQL</p>
+            </article>
+            <article style="border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.5rem; background: #0B1528; color: #fff;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: #f472b6;">Cyber Security</span>
+              <h3 style="font-size: 1.25rem; margin: 0.5rem 0; color: #fff;">AI Security Assistant</h3>
+              <p style="color: #d1d5db; font-size: 0.875rem;">Incident triage assistant correlating SIEM telemetry alerts using LLMs to eliminate fatigue.</p>
+              <p style="color: #86efac; font-weight: bold; font-size: 0.875rem; margin-top: 0.5rem;">Impact: Faster Incident Response • Reduced False Positives • Enhanced Analyst Productivity</p>
+              <p style="color: #9ca3af; font-size: 0.75rem;">Duration: 3 Months • Tech: Llama-3, LangChain, Qdrant, Elasticsearch, FastAPI</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Direct Answer FAQ Section -->
+        <section id="faq" style="margin-bottom: 3rem;">
+          <h2 style="font-size: 1.875rem; margin-bottom: 1rem;">Frequently Asked Questions</h2>
+          <div style="display: flex; flex-col; gap: 1rem; flex-direction: column;">
+            <article style="border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem;">
+              <h3 style="font-size: 1.125rem; margin-bottom: 0.25rem;">What is BubbleBitX?</h3>
+              <p style="color: #4b5563; margin: 0;">BubbleBitX designs, builds, and deploys high-performance autonomous AI workforces and custom digital employees for growing businesses.</p>
+            </article>
+            <article style="border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem;">
+              <h3 style="font-size: 1.125rem; margin-bottom: 0.25rem;">What is an autonomous AI workforce?</h3>
+              <p style="color: #4b5563; margin: 0;">An autonomous AI workforce is a coordinated suite of specialized digital employees that handle telephone reception, customer support, lead qualification, CRM updates, and back-office operations autonomously 24/7.</p>
+            </article>
+            <article style="border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem;">
+              <h3 style="font-size: 1.125rem; margin-bottom: 0.25rem;">Which systems and CRMs can BubbleBitX integrate with?</h3>
+              <p style="color: #4b5563; margin: 0;">BubbleBitX integrates directly with HubSpot, Salesforce, Stripe, WhatsApp Business API, Gmail, Slack, n8n, LangChain, Twilio, and custom databases.</p>
+            </article>
+            <article style="border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem;">
+              <h3 style="font-size: 1.125rem; margin-bottom: 0.25rem;">How do I get started with BubbleBitX?</h3>
+              <p style="color: #4b5563; margin: 0;">You can schedule a free 30-minute AI strategy consultation at <a href="https://calendly.com/bubblebitxt/30min">calendly.com/bubblebitxt/30min</a> or email us at <a href="mailto:hello@bubblebitx.com">hello@bubblebitx.com</a>.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer id="prerender-footer" style="padding: 2rem 1rem; border-top: 1px solid #e5e7eb; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: #6b7280;">
+        <div>&copy; BubbleBitX. All rights reserved. • <a href="mailto:hello@bubblebitx.com">hello@bubblebitx.com</a></div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="https://in.linkedin.com/company/bubblebitx" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.youtube.com/@bubblebitx" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.instagram.com/bubblebitxt/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://twitter.com/bubblebitx" target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        </div>
+      </footer>
+    </div>
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

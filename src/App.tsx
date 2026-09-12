@@ -136,7 +136,7 @@ export default function App() {
           ],
           timestamp: new Date().toISOString(),
           footer: {
-            text: "Forma / BubbleBitX Landing Page"
+            text: "BubbleBitX AI Workforce Platform"
           }
         }
       ]
@@ -234,8 +234,8 @@ export default function App() {
         />
 
         {/* Interactive Content Layer */}
-        <div 
-          id="content-layer"
+        <main 
+          id="main-content"
           className="relative z-10 flex flex-col h-full overflow-y-auto lg:overflow-hidden no-scrollbar px-5 pb-8 pt-24 sm:px-8 sm:pb-8 sm:pt-28 lg:pt-8"
         >
           {/* Absolute layout container for Hero & Form */}
@@ -276,7 +276,7 @@ export default function App() {
               emailStatus={emailStatus}
             />
           </div>
-        </div>
+        </main>
 
         {/* Floating Intro Video Player & Popup Module */}
         <IntroVideoPlayer />
